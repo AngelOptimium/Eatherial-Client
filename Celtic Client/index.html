@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Eatherial</title>
+   <style>
+       @font-face {
+           font-family: 'Minecraft';
+           src: url('font/Minecraft.ttf') format('truetype');
+       }
+
+       body {
+           background-image: url('https://i.pinimg.com/originals/3f/7c/2e/3f7c2e51d5f75beabec6e5803551dc80.gif');
+           background-size: cover;
+           backdrop-filter: blur(8px);
+           color: white;
+           font-family: 'Minecraft', Arial, sans-serif;
+           text-align: center;
+           padding: 60px;
+           margin: 0;
+           height: 100vh;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           transition: background-size 0.3s ease-in-out;
+       }
+
+       #container {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+
+       #myText {
+           font-size: 50px;
+           cursor: pointer;
+           margin-top: 20px;
+           overflow: hidden;
+           display: inline-block;
+       }
+
+       #myText span {
+           color: rgb(255, 0, 0);
+           text-shadow: 0 0 30px rgb(255, 0, 0);
+           transition: color 1s, text-shadow 0.3s;
+       }
+
+       #myText:hover span {
+           color: blue;
+           text-shadow: 0 0 50px blue;
+           transition: color 0.5s, text-shadow 0.3s;
+       }
+
+       #myButton, #myButton2 {
+           background-color: black;
+           color: rgb(255, 0, 0);
+           border: 2px solid rgb(197, 0, 0);
+           padding: 10px 50px;
+           font-size: 16px;
+           cursor: pointer;
+           outline: none;
+           transition: 0.3s;
+           box-shadow: 0 0 20px rgb(255, 0, 0);
+           margin-top: 20px;
+       }
+
+       #myButton:hover, #myButton2:hover {
+           background-color: rgb(0, 0, 0);
+           box-shadow: 0 0 20px blue;
+           border: 2px solid blue;
+           color: rgb(17, 0, 255);
+       }
+
+       #description {
+           color: rgb(180, 0, 0);
+           text-shadow: 0 0 10px rgb(187, 3, 3);
+           font-size: 14px;
+           margin-top: 30px;
+       }
+
+       #myImage {
+           width: 600px;
+           height: auto;
+           margin-top: 5px;
+           border: 2px solid red;
+           box-shadow: 0 0 10px red;
+       }
+
+       .notification {
+           position: fixed;
+           top: 20px;
+           right: 20px;
+           background: black;
+           color: rgb(255, 0, 0);
+           border: 2px solid rgb(255, 0, 0);
+           padding: 10px;
+           border-radius: 5px;
+           box-shadow: 0 0 10px rgb(255, 0, 0);
+       }
+   </style>
+</head>
+<body>
+
+   <div id="container">
+       <p id="myText" onclick="location.href='https://discord.gg/k5Pj7VpMvG';">
+           <span>-</span>
+           <span>E</span>
+           <span>a</span>
+           <span>t</span>
+           <span>h</span>
+           <span>e</span>
+           <span>r</span>
+           <span>i</span>
+           <span>a</span>
+           <span>l</span>
+           <span>-</span>
+       </p>
+       <button id="myButton" onclick="playSound('https://cdn.discordapp.com/attachments/1201284930097922188/1201570625374925062/correct-2-46134.mp3?ex=65ca4cd9&is=65b7d7d9&hm=4ba3fe2f317dbe373bcfe6fdb1546daffc2da6f5186734290fd8045a7b1e1d45&'); location.href='https://cdn.discordapp.com/attachments/1201284930097922188/1201285126932410479/Eatherial.mcpack?ex=65c942f5&is=65b6cdf5&hm=7e6c2413cd465e7d003e0f43394c47c16d8027b0a5b0f19f5ce32172510e501b&';">Download</button>
+       <button id="myButton2" onclick="playSound('https://cdn.discordapp.com/attachments/1201284930097922188/1201570625374925062/correct-2-46134.mp3?ex=65ca4cd9&is=65b7d7d9&hm=4ba3fe2f317dbe373bcfe6fdb1546daffc2da6f5186734290fd8045a7b1e1d45&'); location.href='https://discord.gg/k5Pj7VpMvG';">Discord</button>
+       <div id="description">Welcome to the Eatherial Client Download Website!</div>
+       <div id="description">Devs: Website-AngelPvP, Eatherial-AngelPvP</div>
+       <div id="description">Preview Image of ClickGui</div>
+       <a href="pics/Client.png" target="_blank"><img id="myImage" src="pics/Client.png" alt="Displayed Image"></a>
+       <div id="description">CLIENT IS INVITE ONLY AS OF NOW!!</div>
+   </div>
+
+   <script>
+       const myText = document.getElementById('myText');
+       const letters = myText.getElementsByTagName('span');
+
+       function playSound(soundUrl) {
+           const audio = new Audio(soundUrl);
+           audio.play();
+       }
+
+       function colorChange(index) {
+           setTimeout(() => {
+               letters[index].style.color = 'red';
+               letters[index].style.textShadow = '0 0 20px red'; // Change glow color
+           }, index * 100);
+
+           setTimeout(() => {
+               letters[index].style.color = 'blue';
+               letters[index].style.textShadow = '0 0 20px blue'; // Reset glow color
+           }, (index + letters.length) * 100);
+       }
+
+       function loopAnimation() {
+           for (let i = 0; i < letters.length; i++) {
+               colorChange(i);
+           }
+           setTimeout(loopAnimation, letters.length * 200); // Total time for one loop
+       }
+
+       loopAnimation();
+
+       const body = document.body;
+
+       body.addEventListener('mousemove', (e) => {
+           const mouseX = e.clientX / window.innerWidth - 0.5;
+           const mouseY = e.clientY / window.innerHeight - 0.5;
+
+           body.style.backgroundPosition = `${mouseX * 100}px ${mouseY * 100}px`;
+       });
+
+       function showNotification() {
+           const notification = document.createElement('div');
+           notification.classList.add('notification');
+           notification.textContent = 'Welcome to The Eatherial Download Page!';
+
+           document.body.appendChild(notification);
+
+           setTimeout(() => {
+               notification.remove();
+           }, 5000); // Remove the notification after 5 seconds
+       }
+
+       showNotification();
+   </script>
+</body>
+</html>
